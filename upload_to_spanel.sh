@@ -26,20 +26,20 @@ fi
 echo "Zip file created successfully."
 
 # use ftp command to upload the file
-# echo "Uploading zip file..."
-# ftp -n $FTP_HOST <<END_SCRIPT
-# quote USER $FTP_USER
-# quote PASS $FTP_PASS
-# binary
-# cd $REMOTE_DIR
-# put $ZIP_FILE
-# quit
-# END_SCRIPT
+echo "Uploading zip file..."
+ftp -n $FTP_HOST <<END_SCRIPT
+quote USER $FTP_USER
+quote PASS $FTP_PASS
+binary
+cd $REMOTE_DIR
+put $ZIP_FILE
+quit
+END_SCRIPT
 
 # cgecj uf ftp upload was seccessful
-# if [ $? -ne 0]; then
-# 	echo "Failed to upload zip file. Exiting."
-# 	exit 1
-# fi
+if [ $? -ne 0 ]; then
+	echo "Failed to upload zip file. Exiting."
+	exit 1
+fi
 
-# echo " File uploaded successfully!"
+echo " File uploaded successfully!"
